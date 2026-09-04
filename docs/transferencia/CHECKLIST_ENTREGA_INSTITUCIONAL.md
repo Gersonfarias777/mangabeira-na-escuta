@@ -10,7 +10,8 @@ Legenda: `[x]` verificado nesta auditoria; `[ ]` exige ação/aceite da TI.
 - [x] Branch local inicialmente sincronizada com `origin/gh-pages`.
 - [x] GitHub Pages inicialmente idêntico ao `index.html` local.
 - [x] Varredura por padrões comuns de secrets no histórico sem achados.
-- [ ] Código `.gs` real exportado, revisado e versionado.
+- [x] Duas fontes locais `.gs` recuperadas; versão completa e legado preservados no Git.
+- [ ] Fonte recuperada comparada com o projeto Apps Script atualmente implantado.
 - [ ] Arquivo editável original da arte entregue ou dispensa formal registrada.
 - [ ] POP-01 citado no produto entregue ao repositório apropriado ou link institucional documentado.
 
@@ -19,8 +20,9 @@ Legenda: `[x]` verificado nesta auditoria; `[ ]` exige ação/aceite da TI.
 - [ ] Repositório sob organização/controle institucional; visibilidade definida pela TI.
 - [ ] Proteção/ruleset, revisão e MFA configurados.
 - [ ] Team Vercel, projeto, integração GitHub, branch e rollback testados.
-- [ ] Apps Script, Sheets, Drive e e-mail com proprietário/grupos institucionais.
-- [ ] WhatsApp/Meta e domínio/DNS inventariados e acessíveis.
+- [ ] Apps Script, Sheets e Drive com proprietário/grupos institucionais e IDs registrados no cofre.
+- [x] Acesso da TI ao Gmail/e-mail do canal e WhatsApp confirmado pelo responsável.
+- [ ] Metadados administrativos do WhatsApp/Meta e domínio/DNS inventariados.
 - [ ] Cofre contém os acessos; nenhum secret no Git.
 
 ## Dados, segurança e operação

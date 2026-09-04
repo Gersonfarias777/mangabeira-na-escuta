@@ -2,7 +2,7 @@
 
 ## Se o desenvolvedor anterior não estiver disponível amanhã
 
-A TI consegue manter e publicar o frontend a partir deste repositório. Para operar o fluxo completo, precisa primeiro concluir o recebimento do Apps Script, da planilha, da pasta de anexos e das contas externas indicadas como pendentes.
+A TI consegue manter e publicar frontend e backend a partir deste repositório. O acesso ao Gmail/e-mail institucional e ao WhatsApp foi confirmado. Antes de operar produção, deve comparar o Apps Script remoto com a fonte recuperada e registrar planilha, pasta, implantação e permissões reais.
 
 ## 1. Clonar e executar
 
@@ -39,7 +39,7 @@ Ao adicionar/remover campo, mantenha sincronizados: markup, estado, validação,
 
 1. Acesse o projeto com conta institucional e habilite MFA.
 2. Copie `apps-script/.clasp.json.example` para `apps-script/.clasp.json`, preencha o `scriptId` pelo cofre e instale/autentique o clasp conforme padrão da TI.
-3. Execute `clasp pull` dentro de `apps-script/`; revise e versione todos os `.gs`/`.html` e o manifesto, sem IDs sensíveis ou dados reais. O manifesto fornecido é mínimo; reconcilie-o com o manifesto exportado.
+3. Execute `clasp pull` em uma branch/diretório de conferência; compare `Code.gs`, `Index.html`, `Dashboard.html` e manifesto com `apps-script/`. Não sobrescreva a fonte sem revisar divergências.
 4. Identifique `doGet`, `doPost`, validações server-side, criação de protocolo, escrita no Sheets, criação de arquivo no Drive, `MailApp`/`GmailApp`, templates, locks e tratamento de erro.
 5. Mantenha IDs de planilha/pasta e endereços configuráveis em Script Properties quando apropriado. Entregue valores pelo cofre.
 6. Faça uma implantação Web App de teste, registre versão, executor e quem tem acesso. Atualize o frontend de teste para a nova URL.
@@ -81,7 +81,7 @@ No dia da mudança: adicionar domínio na Vercel, copiar exatamente os registros
 
 ## 6. WhatsApp
 
-Não há `wa.me`, SDK, webhook, Twilio, Evolution ou token no código textual. O WhatsApp é descrito no PDF como divulgação do link. O número pode estar rasterizado na arte JPEG incorporada; o arquivo editável não foi localizado. Para alterar: obter original da arte, atualizar link/texto nos canais oficiais, validar conta Business/Meta e documentar PIN/MFA no cofre.
+Não há `wa.me`, SDK, webhook, Twilio, Evolution ou token no código textual. O WhatsApp é divulgação do link. O número público `+55 83 99306-9348` está rasterizado na arte JPEG incorporada; o arquivo editável não foi localizado. Para alterar: obter o original, atualizar a imagem nas duas versões do formulário, atualizar os canais oficiais, validar conta Business/Meta e documentar PIN/MFA no cofre.
 
 ## 7. Diagnóstico e incidentes
 

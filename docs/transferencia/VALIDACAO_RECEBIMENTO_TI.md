@@ -34,7 +34,7 @@ Execute em computador limpo, com dados exclusivamente sintéticos e endpoint de 
 ## Publicação e continuidade
 
 - [ ] Conferir domínio oficial, registrador, DNS, TTL, HTTPS e renovação.
-- [ ] Confirmar número/link/arte e acesso institucional ao WhatsApp.
+- [ ] Confirmar o número `+55 83 99306-9348`, arte e acesso institucional ao WhatsApp; registrar conta Business/Meta e MFA.
 - [ ] Executar backup de Git, Script, Sheets e Drive; restaurar em ambiente de teste.
 - [ ] Confirmar monitoramento, contato de incidente, RPO/RTO e retenção LGPD.
 - [ ] Após aceite formal, revisar colaboradores e revogar acessos anteriores autorizados.

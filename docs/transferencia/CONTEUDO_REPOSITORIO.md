@@ -8,9 +8,12 @@
 | `.nojekyll` | Publicação estática no GitHub Pages sem Jekyll | Versionado |
 | `.gitignore` | Exclusão de credenciais e estado local | Versionado nesta entrega |
 | `.env.example` | Modelo sem valores reais | Versionado nesta entrega |
+| `apps-script/Code.gs` | Backend completo recuperado: API, planilha, Drive, e-mail e dashboard | Versionado; paridade remota a validar |
+| `apps-script/Index.html` | Formulário executável dentro do Apps Script | Versionado; variante do frontend público |
+| `apps-script/Dashboard.html` | Painel administrativo institucional | Versionado |
+| `apps-script/legacy/` | Cópia anterior preservada para histórico, não implantar | Versionado |
 | `apps-script/appsscript.json` | Manifesto mínimo V8 reproduzível | Versionado nesta entrega |
 | `apps-script/.clasp.json.example` | Modelo de vínculo ao projeto institucional | Versionado nesta entrega |
-| `apps-script/*.gs` | Backend atual | **Ausente; exportação obrigatória** |
 | `docs/canal-de-escuta-validacao-juridica.{md,html,pdf}` | Levantamento jurídico preexistente em três formatos | Não rastreado no início; incluído na entrega |
 | `Arquitetura-Mangabeira-na-Escuta.pdf` | Documento arquitetural preexistente | Não rastreado no início; incluído na entrega |
 | `docs/transferencia/` | Pacote operacional para a TI | Criado nesta entrega |
@@ -30,7 +33,7 @@ Não há `package.json`, framework, bundle, API própria, migrations, submódulo
 | `.vercel/project.json` | Vínculo local a projeto Vercel | Fora do Git; recriar com `vercel link` |
 | `.gitignore` e documentos | Necessário versionar | Incluídos nesta entrega |
 | PDFs/HTML/Markdown jurídicos | Documento institucional | Incluídos; validar conteúdo com Jurídico |
-| Código Apps Script | Dependência essencial ausente | Exportar do Google antes do aceite |
+| Código Apps Script local | Necessário versionar | Recuperado e incluído, com versão legada preservada |
 | Dados/anexos reais | Produção | Permanecer fora do Git |
 
-Não foram encontrados caminhos absolutos, symlinks ou arquivos essenciais adicionais. Ainda não é possível declarar “zero dependências exclusivas deste computador” até o backend e os ativos editáveis serem entregues.
+Não foram encontrados caminhos absolutos, symlinks ou arquivos técnicos essenciais adicionais. Com a incorporação das duas cópias locais do Apps Script, não resta dependência técnica essencial exclusiva deste computador. O editável da arte continua sendo pendência documental/criativa; o asset executável está incorporado e versionado.

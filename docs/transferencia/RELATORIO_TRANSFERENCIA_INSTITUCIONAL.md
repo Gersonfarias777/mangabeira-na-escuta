@@ -4,17 +4,17 @@ Data da auditoria: 04/09/2026. Escopo: repositório local, Git/GitHub acessível
 
 ## 1. Resumo executivo
 
-O frontend é simples e transferível: uma página estática sem dependências, build ou servidor próprio. O fluxo integral ainda não é transferível porque o backend implantado no Google Apps Script não está no Git e os ativos reais de Sheets, Drive e e-mail não foram auditados. A documentação criada torna explícitos o contrato conhecido, os riscos e o roteiro para fechar essas lacunas.
+O frontend é simples e transferível: uma página estática sem dependências, build ou servidor próprio. Após a primeira auditoria, foram localizadas duas cópias do backend fora do repositório; ambas agora estão preservadas no Git, com a versão completa como fonte principal e a anterior em `legacy/`. O fluxo está tecnicamente documentado, mas a TI deve comprovar que a fonte corresponde à implantação atual e registrar os ativos remotos. O acesso ao Gmail/e-mail do canal e ao WhatsApp foi confirmado pelo responsável.
 
 ## 2. Escopo e limitações
 
-Foram lidos arquivos textuais relevantes, histórico Git, estado ignorado/não rastreado, configurações locais e PDFs fornecidos. Consultas GitHub foram somente leitura. Não havia Vercel CLI instalada; não foi usado token local nem consultado o painel. Não havia acesso comprovado ao editor Apps Script, planilha, Drive, DNS, WhatsApp ou logs, portanto detalhes desses serviços permanecem “a confirmar”.
+Foram lidos arquivos textuais relevantes, histórico Git, estado ignorado/não rastreado, configurações locais, fontes encontradas nas pastas adjacentes e PDFs fornecidos. Consultas GitHub foram somente leitura. Não havia Vercel CLI instalada; não foi usado token local nem consultado o painel. Não houve consulta ao editor Apps Script, planilha, Drive, DNS ou logs. O acesso da TI ao Gmail/e-mail e WhatsApp foi informado pelo responsável, mas seus metadados administrativos não foram expostos no Git.
 
 ## 3. Arquitetura
 
-`navegador -> index.html estático -> HTTPS POST form-urlencoded -> Web App Apps Script -> armazenamento/notificação não auditados`.
+`navegador -> index.html estático -> HTTPS POST form-urlencoded -> doPost Apps Script -> Sheets + Drive opcional + MailApp`.
 
-O PDF arquitetural declara Sheets como armazenamento, Drive implícito para anexos e e-mail institucional, mas não substitui evidência do backend. Também afirma que o Apps Script gera o protocolo; o código atual demonstra geração client-side. Não existe API própria, Supabase, banco SQL, autenticação ou dashboard no repositório.
+O backend recuperado confirma Sheets, Drive e MailApp, além de dashboard institucional. O frontend público gera o protocolo no cliente e o backend aceita o protocolo válido recebido; a versão do formulário interna ao Apps Script recebe protocolo gerado pelo servidor. Essa diferença explica parte da divergência documental. Não existe API própria, Supabase ou banco SQL.
 
 ## 4. GitHub
 
@@ -34,15 +34,15 @@ Existe `.vercel/project.json` ignorado com nome de projeto `mangabeira-na-escuta
 
 ## 6. Google Apps Script
 
-O endpoint público está hardcoded no `fetch` do frontend. Não há `.gs`, manifesto original, `doGet`, `doPost`, scopes, executor, deployment, triggers ou logs no Git. Foi criado um manifesto mínimo V8 e exemplo clasp, que não substituem a exportação real. Esta é a maior pendência bloqueante.
+O endpoint público está hardcoded no `fetch`. `apps-script/Code.gs` contém `doGet`, `doPost`, configuração, validações, setup da planilha, dashboard, Drive, protocolo e MailApp; `Index.html` e `Dashboard.html` completam o projeto. A cópia anterior está em `legacy/`. O manifesto é mínimo e o `scriptId`, executor, deployment, scopes efetivos, triggers e logs devem ser confirmados via conta institucional. A principal pendência agora é comprovar paridade com a versão implantada.
 
 ## 7. Sheets/banco
 
-Sheets é declarado como banco no PDF; não foi possível verificar planilha, abas, colunas, fórmulas, validações, dashboard ou unicidade. O contrato exato enviado pelo frontend está em `MAPA_DADOS.md`. Não há evidência de Supabase ou outro banco.
+O código cria cinco abas: `01_COLETA` (22 colunas), `02_ACOMPANHAMENTO` (33), `03_DASHBOARD`, `04_APRESENTAÇÃO` e `99_LISTAS`, com fórmulas e validações. O mapa detalha suas finalidades. O estado e as permissões da planilha real ainda precisam ser comparados.
 
 ## 8. Drive/storage
 
-Um arquivo opcional é convertido integralmente para Base64 e enviado no JSON. A criação do arquivo, pasta, URL e permissões dependem do backend ausente. Não foram encontrados anexos reais no Git.
+Um arquivo opcional é convertido para Base64. O backend valida MIME declarado/tamanho decodificado, cria o arquivo na pasta `Canal de Escuta - Anexos (Formulario)` e grava a URL na coleta. A pasta é localizada apenas por nome, o que pode selecionar a pasta errada se houver duplicatas. ACLs e conteúdo real não foram consultados; nenhum anexo real está no Git.
 
 ## 9. Formulário
 
@@ -52,11 +52,11 @@ Validações são somente client-side no código auditável. O `accept` limita o
 
 ## 10. E-mail
 
-Nenhuma API key ou código de e-mail foi localizado. O PDF cita `canaldeescuta@mangabeirashopping.com.br`, mas remetente/destinatário, `MailApp`/`GmailApp`, template, anexos, logs e quotas só podem ser confirmados no `.gs` e Workspace.
+Nenhuma API key foi localizada. `sendCanalEmail_()` usa `MailApp.sendEmail`, destinatário `canaldeescuta@mangabeirashopping.com.br`, corpo texto e anexo opcional. O remetente efetivo é a conta executora; aliases, quotas e logs devem ser confirmados no Workspace. A TI possui acesso informado ao e-mail/Gmail.
 
 ## 11. WhatsApp
 
-Não há link `wa.me`, API, token, webhook ou fornecedor no texto do código. O PDF descreve apenas compartilhamento do link. A arte é JPEG Base64 e pode conter texto rasterizado; não há editável original.
+Não há link `wa.me`, API, token, webhook ou fornecedor no texto do código. O WhatsApp `+55 83 99306-9348` aparece apenas rasterizado na arte e é usado para divulgação; a TI possui acesso informado. Não há editável original localizado.
 
 ## 12. Domínio/DNS
 
@@ -68,7 +68,7 @@ Não há variáveis consumidas pelo frontend. `VERCEL_OIDC_TOKEN` é local e sen
 
 ## 14. Dependências locais
 
-Não há dependência de pacote, symlink, submódulo, certificado, chave ou banco local. `.vercel/` é recriável; `.env.local` é credencial a recriar. O backend e o editável da arte são dependências externas ausentes, não necessariamente exclusivas deste computador; precisam de entrega comprovada antes de declarar autonomia plena.
+Não há dependência de pacote, symlink, submódulo, certificado, chave ou banco local. `.vercel/` é recriável; `.env.local` é credencial a recriar. As duas fontes locais do backend foram incorporadas. Portanto, não resta dependência técnica essencial exclusiva deste computador; o editável da arte é uma pendência criativa/documental, pois o asset de runtime está versionado.
 
 ## 15. Segurança
 
@@ -80,7 +80,8 @@ Riscos prioritários:
 4. **Anexos:** confiança em tamanho/MIME/nome fornecidos pelo cliente; ausência de antivírus e ACL comprovados.
 5. **Planilha:** campos livres podem iniciar fórmulas; sanitização contra formula injection não comprovada.
 6. **LGPD:** não há aviso/política visível, retenção, canal do titular, base legal formalizada ou minimização validada; denúncias podem conter dados sensíveis de terceiros.
-7. **Operação:** sem fonte do backend, testes, monitoração, restauração ou runbook anterior.
+7. **Operação:** fonte recuperada ainda sem teste de paridade remota, monitoração ou restauração comprovada.
+9. **Pasta por nome:** `getFoldersByName()` pode escolher a primeira pasta homônima; preferir ID em Script Properties após migração controlada.
 8. **XSS local no resumo:** `renderSummary` concatena valores digitados em `innerHTML` sem escape; a mesma sessão pode executar markup inserido pelo usuário. O comprovante usa escape para valores, mas o resumo não.
 
 Nenhuma correção de comportamento foi feita silenciosamente. Recomenda-se corrigir em branch de teste, com backend versionado e resposta CORS/JSON verificável, após aprovação funcional/Jurídico.
@@ -91,9 +92,9 @@ Está em `MATRIZ_PROPRIEDADE.md`; quase todos os ativos externos ainda carecem d
 
 ## 17. Pendências
 
-- Exportar e versionar o Apps Script real; reconciliar manifesto.
+- Comparar `apps-script/` com o Apps Script remoto implantado e reconciliar manifesto.
 - Auditar planilha, Drive, e-mail, triggers, quotas e logs.
-- Confirmar/recriar Vercel, domínio/DNS e WhatsApp.
+- Confirmar/recriar Vercel e domínio/DNS; registrar metadados institucionais do WhatsApp.
 - Entregar editável da arte e POP-01 ou registrar sua localização institucional.
 - Corrigir/testar riscos de falso sucesso, protocolo, XSS, anexos, abuso e formula injection.
 - Formalizar LGPD, retenção, backups, resposta a incidentes e acesso mínimo.
@@ -101,10 +102,10 @@ Está em `MATRIZ_PROPRIEDADE.md`; quase todos os ativos externos ainda carecem d
 
 ## 18. Nota de transferibilidade
 
-**55%**. O frontend e a documentação são reproduzíveis, mas o componente que recebe e persiste denúncias — junto com o mapa real dos dados e ativos administrativos — ainda não foi entregue/auditado. A nota não mede qualidade visual; mede autonomia técnica, administrativa e operacional.
+**80%**. Frontend, backend recuperado, schema criado por código, dashboards, e-mail e anexos estão versionados/documentados; a TI tem acesso informado ao Gmail/e-mail e WhatsApp. Faltam comprovação de paridade com o Apps Script implantado, inventário dos IDs/ACLs reais, Vercel/domínio/DNS e teste completo de restauração.
 
 ## 19. Resultado final
 
 **Se a transferência fosse realizada hoje, a TI teria controle técnico, administrativo e operacional integral do Mangabeira na Escuta? PARCIALMENTE.**
 
-A TI controlaria o frontend e conseguiria publicá-lo. Não conseguiria, apenas com o Git, modificar/restaurar com segurança o backend, comprovar escrita e e-mail, administrar schema/anexos ou substituir integralmente os acessos externos. O aceite integral depende das pendências acima.
+A TI consegue compreender e modificar frontend, backend, schema, dashboard, anexos e notificação por e-mail usando o Git. O controle integral ainda depende de comparar a implantação real, registrar IDs/ACLs e concluir o roteiro em máquina limpa. Nenhum código técnico essencial precisa permanecer neste computador.

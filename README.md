@@ -17,7 +17,7 @@ Abra `http://localhost:8080`. Não envie manifestações de teste ao endpoint de
 ## Componentes
 
 - `index.html`: HTML, CSS, JavaScript e imagem JPEG incorporada em Base64.
-- `apps-script/`: manifesto reproduzível e exemplo de vínculo clasp. O código `.gs` da implantação atual ainda precisa ser exportado pela conta institucional.
+- `apps-script/`: backend recuperado (`Code.gs`, formulário, dashboard), manifesto, histórico legado e exemplo de vínculo clasp. A TI deve compará-lo com a versão implantada na conta institucional antes de qualquer publicação.
 - `docs/transferencia/`: pacote de transferência institucional.
 - `docs/canal-de-escuta-validacao-juridica.*`: levantamento jurídico descritivo preexistente.
 - `Arquitetura-Mangabeira-na-Escuta.pdf`: documento técnico preexistente; contém afirmações que precisam ser reconciliadas com o código atual, conforme o relatório de transferência.
