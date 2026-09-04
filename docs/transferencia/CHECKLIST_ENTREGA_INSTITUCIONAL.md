@@ -12,7 +12,8 @@ Legenda: `[x]` verificado nesta auditoria; `[ ]` exige ação/aceite da TI.
 - [x] Varredura por padrões comuns de secrets no histórico sem achados.
 - [x] Duas fontes locais `.gs` recuperadas; versão completa e legado preservados no Git.
 - [ ] Fonte recuperada comparada com o projeto Apps Script atualmente implantado.
-- [ ] Arquivo editável original da arte entregue ou dispensa formal registrada.
+- [x] Assets atuais, históricos, PNG em alta resolução, avatar e PSD local encontrados e versionados.
+- [ ] TI/Marketing confirmou se o PSD corresponde à matriz exata da arte vertical atual e seus direitos.
 - [ ] POP-01 citado no produto entregue ao repositório apropriado ou link institucional documentado.
 
 ## Administração externa

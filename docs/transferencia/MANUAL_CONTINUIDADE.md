@@ -81,7 +81,7 @@ No dia da mudança: adicionar domínio na Vercel, copiar exatamente os registros
 
 ## 6. WhatsApp
 
-Não há `wa.me`, SDK, webhook, Twilio, Evolution ou token no código textual. O WhatsApp é divulgação do link. O número público `+55 83 99306-9348` está rasterizado na arte JPEG incorporada; o arquivo editável não foi localizado. Para alterar: obter o original, atualizar a imagem nas duas versões do formulário, atualizar os canais oficiais, validar conta Business/Meta e documentar PIN/MFA no cofre.
+Não há `wa.me`, SDK, webhook, Twilio, Evolution ou token no código textual. O WhatsApp é divulgação do link. O número público `+55 83 99306-9348` está rasterizado na arte. Os PNG/JPEG atuais, materiais históricos, avatar e um PSD institucional estão em `assets/`; confirme com Marketing a matriz correta. Para alterar: editar a matriz, atualizar a imagem nas duas versões do formulário, atualizar os canais oficiais, validar conta Business/Meta e guardar PIN/MFA no cofre.
 
 ## 7. Diagnóstico e incidentes
 

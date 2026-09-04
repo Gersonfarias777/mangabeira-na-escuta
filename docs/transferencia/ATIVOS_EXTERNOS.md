@@ -18,7 +18,7 @@ Este arquivo contém identificadores e contatos necessários à manutenção. N�
 ## Onde alterar
 
 - E-mail: `CANAL_CONFIG.DEST_EMAIL` em `apps-script/Code.gs` e texto rasterizado na arte do formulário.
-- WhatsApp: hoje aparece somente dentro da arte JPEG Base64. Para mudar sem degradar a imagem, obtenha o arquivo editável; depois substitua a imagem nas duas versões de formulário (`index.html` e `apps-script/Index.html`).
+- WhatsApp: hoje aparece somente dentro da arte JPEG Base64. Os arquivos gráficos recuperados estão em `assets/`; confirme a matriz correta e substitua a imagem nas duas versões (`index.html` e `apps-script/Index.html`).
 - Endpoint Apps Script: chamada `fetch` em `index.html`.
 - Nomes de planilha, abas e pasta: `CANAL_CONFIG` em `apps-script/Code.gs`.
 - Domínio: configurar na Vercel e no DNS somente com os registros fornecidos pelo painel.

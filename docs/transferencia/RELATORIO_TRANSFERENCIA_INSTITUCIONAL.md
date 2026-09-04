@@ -56,7 +56,7 @@ Nenhuma API key foi localizada. `sendCanalEmail_()` usa `MailApp.sendEmail`, des
 
 ## 11. WhatsApp
 
-Não há link `wa.me`, API, token, webhook ou fornecedor no texto do código. O WhatsApp `+55 83 99306-9348` aparece apenas rasterizado na arte e é usado para divulgação; a TI possui acesso informado. Não há editável original localizado.
+Não há link `wa.me`, API, token, webhook ou fornecedor no texto do código. O WhatsApp `+55 83 99306-9348` aparece rasterizado na arte e é usado para divulgação; a TI possui acesso informado. Foram versionados PNG/JPEG atuais, imagens históricas, avatar e o PSD institucional encontrado; a correspondência exata do PSD com a arte vertical deve ser confirmada por Marketing.
 
 ## 12. Domínio/DNS
 
@@ -68,7 +68,7 @@ Não há variáveis consumidas pelo frontend. `VERCEL_OIDC_TOKEN` é local e sen
 
 ## 14. Dependências locais
 
-Não há dependência de pacote, symlink, submódulo, certificado, chave ou banco local. `.vercel/` é recriável; `.env.local` é credencial a recriar. As duas fontes locais do backend foram incorporadas. Portanto, não resta dependência técnica essencial exclusiva deste computador; o editável da arte é uma pendência criativa/documental, pois o asset de runtime está versionado.
+Não há dependência de pacote, symlink, submódulo, certificado, chave ou banco local. `.vercel/` é recriável; `.env.local` é credencial a recriar. As fontes do backend, assets, PSD, preview e instruções locais foram incorporados. Não resta dependência técnica essencial exclusiva deste computador.
 
 ## 15. Segurança
 
@@ -95,7 +95,7 @@ Está em `MATRIZ_PROPRIEDADE.md`; quase todos os ativos externos ainda carecem d
 - Comparar `apps-script/` com o Apps Script remoto implantado e reconciliar manifesto.
 - Auditar planilha, Drive, e-mail, triggers, quotas e logs.
 - Confirmar/recriar Vercel e domínio/DNS; registrar metadados institucionais do WhatsApp.
-- Entregar editável da arte e POP-01 ou registrar sua localização institucional.
+- Confirmar com Marketing a matriz gráfica correta e entregar o POP-01 ou registrar sua localização institucional.
 - Corrigir/testar riscos de falso sucesso, protocolo, XSS, anexos, abuso e formula injection.
 - Formalizar LGPD, retenção, backups, resposta a incidentes e acesso mínimo.
 - Executar e assinar o roteiro em computador limpo.
